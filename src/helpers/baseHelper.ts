@@ -109,6 +109,13 @@ export class BaseHelper {
         });
     }
 
+    async openMicroappBladeSimple({ page, context, selector, microappSelector }: MicroappSelector) {
+        await step(context)(`Open Microapp Blade`, async () => {
+            await ph.clickOnSelector(page, selector);
+        });
+    }
+
+
     async fillLookUp({ page, context, text, lookupSelector}: LookUp) {
         await step(context)('Filling Lookup Field', async () => {
             await ph.fillLookup(page, text, lookupSelector)

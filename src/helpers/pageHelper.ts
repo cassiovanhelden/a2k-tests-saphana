@@ -58,7 +58,6 @@ export class PageHelper {
 
 
     async setTextArea(page: Page, text: string ) {
-        console.log("TEXT: " + text);
         await page.waitForSelector("div >> div >> textarea");
         await page.type("div >> div >> textarea", text);
     }
@@ -69,6 +68,8 @@ export class PageHelper {
     }
 
     async clickOnButton(page: Page, text: string){
+        await page.waitForTimeout(6000);
+        await page.screenshot({path:'aaaaaaaaaaa.png'});
         await page.waitForSelector(`data-testid='${text}'`);
         await page.click(`data-testid='${text}'`);
     }

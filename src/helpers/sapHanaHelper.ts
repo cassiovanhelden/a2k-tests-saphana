@@ -14,9 +14,6 @@ export class SapHanaHelper {
 
     constructor() {}
 
-    async simpleLoginToWorkspace({page, context}: PageContext) {
-        await helper.simpleLoginToWorkspace({page, context})
-    }
 
     async startCommonProcess({page, context, synchronizationType}: Login) {
         await helper.commonIntegrationProcesses({page, context, synchronizationType})
@@ -27,34 +24,18 @@ export class SapHanaHelper {
         await helper.openMicroappBlade({ page, context, selector, microappSelector });
     }
 
-    async searchForEmployee({page, context}: PageContext) {
-        let text = 'A2k AdminUsr';
-        let lookupSelector = 'data-testid=text-input-search-by-name';
-        await helper.fillLookUp({page, context, text, lookupSelector});
+    async openTimeClockMicroapp({ page, context }: PageContext) {
+        let selector = 'div[title="Time Clock"]';
+        await helper.openMicroappBlade({ page, context, selector, microappSelector });
     }
 
-    async openEmployeeDetailPage({page, context}: PageContext) {
-        let text = 'A2k AdminUsr';
-        let selector = `td >> span >> text=${text}`;
-        await helper.selectRecordOnTable({page, context, selector});
-    }
-
-    async isThePageCorrect({page, context}: PageContext) {
-        let selector = "span >> text=A2k AdminUsr";
-        await step(context)('Ensuring the page is the correct one', async () => {
-            await page.waitForSelector(selector);
-            return true;
-        });
+    async openTimeClockMicroappStopClock({ page, context }: PageContext) {
+        let selector = 'div[title="Time Clock"]';
+        await helper.openMicroappBladeSimple({ page, context, selector, microappSelector });
     }
 
 
     async fillTextArea({page, context, text}: TextArea) {
-        await helper.setTextArea({page, context, text});
-    }
-
-    async fillTimeEntryTextArea({page, context}: PageContext) {
-        let id = Math.floor(1000 + Math.random() * 9000);
-        let text = "Working on ticket CTX:" + id.toString();
         await helper.setTextArea({page, context, text});
     }
 
@@ -64,28 +45,21 @@ export class SapHanaHelper {
         await helper.setTextOnSelect({page, context, text, selector});
     }
 
+    async setTaskTimeClockType({page, context}: PageContext){
+        let text = 'Training';
+        let selector = 'div[data-testid="select-1"] > div > div > div > select';
+        await helper.setTextOnSelect({page, context, text, selector});
+    }
+
     async setRecordedHours({page, context, inputText}: Input){
         let selector = 'data-testid=text-input-recorded-hours-hh-mm';
         await helper.setTextOnInput({page, context, inputText, selector});
-    }
-
-
-    async validateTimeEntry({page, context}: PageContext, paramName: string, expectedValue: boolean, currentValue: boolean) {
-        return await step(context)(`Validating: ` + paramName + 
-                            `\n Expected value: ` + expectedValue + 
-                            `\n Current value: ` + currentValue , async () => {
-                            return (expectedValue===currentValue);
-        });
     }
 
     async clickOnPageActionButton({page, context}: PageContext) {
         await helper.clickOnPageActionButton({page, context});
     }
 
-    async clickOnButton({page, context}: PageContext) {
-        let text = "button-add-time-entry";
-        await helper.clickOnButton({page, context, text});
-    }
 
     async selectDate({page, context}: PageContext) {
         let dateText = '08/31/2021';

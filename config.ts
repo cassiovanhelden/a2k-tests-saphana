@@ -16,6 +16,10 @@ export const config = {
     microappsAdminUrl: process.env.CONFIG_MICROAPPS_ADMIN_URL ? `${process.env.CONFIG_MICROAPPS_ADMIN_URL}` : '',
     loggerFilter: `.${process.env.CONFIG_BUILDER_URL}(.*)initiator_type=BUTTON`,
     defaultTimeout: 90000,
-    shouldConfigureIntegrations: false,
+    shouldConfigureIntegrations: true,
     loggErrors: true
+};
+export const sapHanaConfig = {
+    username: process.env.USERNAME ? `${process.env.USERNAME}` : '',
+    password: process.env.PASSWORD ? `${process.env.PASSWORD}` : '',
 };

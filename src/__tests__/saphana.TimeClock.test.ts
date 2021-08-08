@@ -1,8 +1,10 @@
 import { it, step } from '../../init';
 import {SapHanaHelper} from "../helpers/sapHanaHelper";
+import {SapHanaApiHelper} from "../helpers/sapHanaApiHelper";
 
 
 const sapHana = new SapHanaHelper();
+const sapHanaApi = new SapHanaApiHelper();
 const FIXTURE_NAME = `SAP Hana Test Automation`;
 const { v4: uuidv4 } = require('uuid');
 
@@ -18,30 +20,36 @@ describe(FIXTURE_NAME, () => {
             await sapHana.startCommonProcess({page, context, synchronizationType});
 
             //Accessing Microapp Page
-            await sapHana.openCreateTimeEntryMicroapp({page, context});
+            await sapHana.openTimeClockMicroapp({page, context});
 
             //Fill Task Type
-            await sapHana.setTaskType({page, context});
-
-            //Fill Date Input
-            await sapHana.selectDate({page, context});
-
-            //Fill Recorded Hours
-            await sapHana.setRecordedHours({page, context, inputText});
-
-            await page.screenshot({path:"aaaaaaaaaaaaaaaa.png"})
+            await sapHana.setTaskTimeClockType({page, context});
 
             //Fill Text Area
             await sapHana.fillTextArea({page, context, text});
 
-            await page.screenshot({path:"bbbbbbbbbbbbbbbb.png"})
+            //Click Action Button
+            await sapHana.clickOnPageActionButton({page,context});
+
+            //Green PopUp
+            await sapHana.checkForApprovedPopUp({page,context});
 
 
-            // //Searching for A2k AdminUsr on users table
-            // await sapHana.openEmployeeDetailPage({page, context});
-            //
-            // //Ensuring the selected page is the correct one
-            // expect(await sapHana.isThePageCorrect({page, context})).toBeTruthy;
+            await page.keyboard.press('Escape');
+
+            //--------------------------------------------------------//
+
+            //Accessing Microapp Page
+            await sapHana.openTimeClockMicroappStopClock({page, context});
+
+            //Click Action Button
+            await sapHana.clickOnPageActionButton({page,context});
+
+            //Green PopUp
+            await sapHana.checkForApprovedPopUp({page,context});
+
+            expect(await sapHanaApi.checkTimeeEntryBaseOnNoteText(text)).toBeTruthy;
+
 
         });
     });

@@ -16,12 +16,6 @@ const microappsAdmin = new MicroappsAdmin();
 let bearerToken: string;
 
 export const setupIntgration = async () => {
-
-    console.log('cwaAPI: ', cwaAPI);
-    console.log('citrixCloudCustomerId: ', citrixCloudCustomerId);
-    console.log('citrixCloudClientId: ', citrixCloudClientId);
-    console.log('citrixCloudClientSecret: ', citrixCloudClientSecret);
-
     bearerToken = await citrixCloud.getCCBearerToken({
         cwaAPI,
         citrixCloudCustomerId,
@@ -31,19 +25,11 @@ export const setupIntgration = async () => {
 
     const authInstance = await citrixCloud.createAuthInstance({ bearerToken });
 
-    console.log('authInstance: ', authInstance);
-
-    console.log('microappsAdminUrl: ', microappsAdminUrl);
-    console.log('microappsAdminUrl length: ', microappsAdminUrl.length);
-    console.log('integrationName: ', integrationName);
-    console.log('integrationName length: ', integrationName.length);
-
     const res = await microappsAdmin.getStatusIntegration({
         authInstance,
         microappsAdminUrl,
         integrationName,
     });
-    console.log('res: ', res);
 
     if (res !== null) {
         console.log(`[${integrationName}] - Deleting Integration`);
@@ -55,7 +41,6 @@ export const setupIntgration = async () => {
         microappsAdminUrl,
         pathToFile,
     });
-    console.log('response: ', response);
     const integrationId = response.data.id;
 
     console.log('integrationId: ', integrationId);

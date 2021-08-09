@@ -15,7 +15,7 @@ export class SapHanaApi {
                 },
                 auth: {
                     username: sapHanaConfig.username,
-                    password: sapHanaConfig.pwd
+                    password: sapHanaConfig.password
                 },
                 timeout: 180000,
                 url: `${baseUrl}API_MANAGE_WORKFORCE_TIMESHEET/TimeSheetEntryCollection?$filter=TimeSheetStatus eq '10' or TimeSheetStatus eq '20' or  TimeSheetStatus eq '30' or TimeSheetStatus eq '40' or TimeSheetStatus eq '50'`,

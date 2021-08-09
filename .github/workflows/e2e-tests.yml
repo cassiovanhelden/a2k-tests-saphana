@@ -39,20 +39,23 @@ jobs:
             - name: Install dependencies
               run: yarn install  --frozen-lockfile
 
+            - name: Export secrets
+              run: |
+                  echo "CONFIG_CLIENT_ID=${{ secrets.CONFIG_CLIENT_ID}}" >> $GITHUB_ENV;
+                  echo "CONFIG_CLIENT_SECRET=${{ secrets.CONFIG_CLIENT_SECRET}}" >> $GITHUB_ENV;
+                  echo "CONFIG_CUSTOMER_ID=${{ secrets.CONFIG_CUSTOMER_ID}}" >> $GITHUB_ENV;
+                  echo "CONFIG_CWA_API=${{ secrets.CONFIG_CWA_API}}" >> $GITHUB_ENV;
+                  echo "CONFIG_IDP=${{ secrets.CONFIG_IDP}}" >> $GITHUB_ENV;
+                  echo "CONFIG_MICROAPP_ADMIN_URL=${{ secrets.CONFIG_MICROAPP_ADMIN_URL}}" >> $GITHUB_ENV;
+                  echo "CONFIG_WORKSPACE_PASSWORD=${{ secrets.CONFIG_WORKSPACE_PASSWORD}}" >> $GITHUB_ENV;
+                  echo "CONFIG_WORKSPACE_URL=${{ secrets.CONFIG_WORKSPACE_URL}}" >> $GITHUB_ENV;
+                  echo "CONFIG_WORKSPACE_USERNAME=${{ secrets.CONFIG_WORKSPACE_USERNAME}}" >> $GITHUB_ENV;
+                  echo "USERNAME=${{ secrets.USERNAME}}" >> $GITHUB_ENV;
+                  echo "PASSWORD=${{ secrets.PASSWORD}}" >> $GITHUB_ENV;
+              shell: bash
 
             - name: Run tests
               run: |
-                  export CONFIG_CLIENT_ID=${{secrets.CONFIG_CLIENT_ID}};
-                  export CONFIG_CLIENT_SECRET=${{secrets.CONFIG_CLIENT_SECRET}};
-                  export CONFIG_CUSTOMER_ID=${{secrets.CONFIG_CUSTOMER_ID}};
-                  export CONFIG_CWA_API=${{secrets.CONFIG_CWA_API}};
-                  export CONFIG_IDP=${{secrets.CONFIG_IDP}};
-                  export CONFIG_MICROAPP_ADMIN_URL=${{secrets.CONFIG_MICROAPP_ADMIN_URL}};
-                  export CONFIG_WORKSPACE_PASSWORD=${{secrets.CONFIG_WORKSPACE_PASSWORD}};
-                  export CONFIG_WORKSPACE_URL=${{secrets.CONFIG_WORKSPACE_URL}};
-                  export CONFIG_WORKSPACE_USERNAME=${{secrets.CONFIG_WORKSPACE_USERNAME}};
-                  export USERNAME=${{secrets.USERNAME}};
-                  export PASSWORD=${{secrets.PASSWORD}};
                   echo "startDate=$(date -u +'%Y-%m-%dT%H:%M:%SZ')" >> $GITHUB_ENV
                   yarn jest -i --json --outputFile=artifacts/report.json --testNamePattern="${{github.event.inputs.testList}}" src/__tests__
               shell: bash

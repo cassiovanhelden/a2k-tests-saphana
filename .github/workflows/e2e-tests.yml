@@ -46,7 +46,7 @@ jobs:
                   echo "CONFIG_CUSTOMER_ID=${{ secrets.CONFIG_CUSTOMER_ID}}" >> $GITHUB_ENV;
                   echo "CONFIG_CWA_API=${{ secrets.CONFIG_CWA_API}}" >> $GITHUB_ENV;
                   echo "CONFIG_IDP=${{ secrets.CONFIG_IDP}}" >> $GITHUB_ENV;
-                  echo "CONFIG_MICROAPP_ADM_URL=${{ secrets.CONFIG_MICROAPP_ADM_URL}}" >> $GITHUB_ENV;
+                  echo "CONFIG_MICROAPP_ADMIN_URL=${{ secrets.CONFIG_MICROAPP_ADMIN_URL}}" >> $GITHUB_ENV;
                   echo "CONFIG_WORKSPACE_PASSWORD=${{ secrets.CONFIG_WORKSPACE_PASSWORD}}" >> $GITHUB_ENV;
                   echo "CONFIG_WORKSPACE_URL=${{ secrets.CONFIG_WORKSPACE_URL}}" >> $GITHUB_ENV;
                   echo "CONFIG_WORKSPACE_USERNAME=${{ secrets.CONFIG_WORKSPACE_USERNAME}}" >> $GITHUB_ENV;

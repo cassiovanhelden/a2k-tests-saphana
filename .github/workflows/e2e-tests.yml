@@ -41,7 +41,6 @@ jobs:
 
             - name: Export secrets
               run: |
-                  echo "VARIABLE=${{ secrets.SECRET}}" >> $GITHUB_ENV;
                   echo "CONFIG_CLIENT_ID=${{ secrets.CONFIG_CLIENT_ID}}" >> $GITHUB_ENV;
                   echo "CONFIG_CLIENT_SECRET=${{ secrets.CONFIG_CLIENT_SECRET}}" >> $GITHUB_ENV;
                   echo "CONFIG_CUSTOMER_ID=${{ secrets.CONFIG_CUSTOMER_ID}}" >> $GITHUB_ENV;

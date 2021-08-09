@@ -39,22 +39,22 @@ jobs:
       - name: Install dependencies
         run: yarn install  --frozen-lockfile
 
-    - name: Run tests
-        run: |
-          export CONFIG_CLIENT_ID=${{secrets.CONFIG_CLIENT_ID}};
-          export CONFIG_CLIENT_SECRET=${{secrets.CONFIG_CLIENT_SECRET}};
-          export CONFIG_CUSTOMER_ID=${{secrets.CONFIG_CUSTOMER_ID}};
-          export CONFIG_CWA_API=${{secrets.CONFIG_CWA_API}};
-          export CONFIG_IDP=${{secrets.CONFIG_IDP}};
-          export CONFIG_MICROAPPS_ADMIN_URL=${{secrets.CONFIG_MICROAPPS_ADMIN_URL}};
-          export CONFIG_WORKSPACE_PASSWORD=${{secrets.CONFIG_WORKSPACE_PASSWORD }};
-          export CONFIG_WORKSPACE_URL=${{secrets.CONFIG_WORKSPACE_URL}};
-          export CONFIG_WORKSPACE_USERNAME=${{secrets.CONFIG_WORKSPACE_USERNAME}};
-          export USERNAME=${{secrets.USERNAME}};
-          export PASSWORD=${{secrets.PASSWORD}};
-          echo "startDate=$(date -u +'%Y-%m-%dT%H:%M:%SZ')" >> $GITHUB_ENV
-          yarn jest -i --json --outputFile=artifacts/report.json --testNamePattern="${{github.event.inputs.testList}}" src/__tests__
-        shell: bash
+        - name: Run tests
+            run: |
+              export CONFIG_CLIENT_ID=${{secrets.CONFIG_CLIENT_ID}};
+              export CONFIG_CLIENT_SECRET=${{secrets.CONFIG_CLIENT_SECRET}};
+              export CONFIG_CUSTOMER_ID=${{secrets.CONFIG_CUSTOMER_ID}};
+              export CONFIG_CWA_API=${{secrets.CONFIG_CWA_API}};
+              export CONFIG_IDP=${{secrets.CONFIG_IDP}};
+              export CONFIG_MICROAPPS_ADMIN_URL=${{secrets.CONFIG_MICROAPPS_ADMIN_URL}};
+              export CONFIG_WORKSPACE_PASSWORD=${{secrets.CONFIG_WORKSPACE_PASSWORD }};
+              export CONFIG_WORKSPACE_URL=${{secrets.CONFIG_WORKSPACE_URL}};
+              export CONFIG_WORKSPACE_USERNAME=${{secrets.CONFIG_WORKSPACE_USERNAME}};
+              export USERNAME=${{secrets.USERNAME}};
+              export PASSWORD=${{secrets.PASSWORD}};
+              echo "startDate=$(date -u +'%Y-%m-%dT%H:%M:%SZ')" >> $GITHUB_ENV
+              yarn jest -i --json --outputFile=artifacts/report.json --testNamePattern="${{github.event.inputs.testList}}" src/__tests__
+            shell: bash
 
           - name: Upload artifacts
             if: always()

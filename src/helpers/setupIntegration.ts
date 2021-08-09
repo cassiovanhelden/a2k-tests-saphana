@@ -33,12 +33,18 @@ export const setupIntgration = async () => {
 
     console.log('authInstance: ', authInstance);
 
+    console.log('microappsAdminUrl: ', microappsAdminUrl);
+    console.log('microappsAdminUrl length: ', microappsAdminUrl.length);
+    console.log('integrationName: ', integrationName);
+    console.log('integrationName length: ', integrationName.length);
+
     const res = await microappsAdmin.getStatusIntegration({
         authInstance,
         microappsAdminUrl,
         integrationName,
     });
     console.log('res: ', res);
+
     if (res !== null) {
         console.log(`[${integrationName}] - Deleting Integration`);
         await microappsAdmin.deleteIntegration({ authInstance, microappsAdminUrl, integrationId: res });

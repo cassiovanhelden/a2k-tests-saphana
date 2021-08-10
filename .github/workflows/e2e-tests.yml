@@ -91,7 +91,8 @@ jobs:
             - name: Send Report to Power BI
               run: |
                   echo $startDate
-                  echo "customerID=${{ secrets.CONFIG_CUSTOMER_ID}}" >> $GITHUB_ENV;
+                  export customerID=${{ secrets.CONFIG_CUSTOMER_ID}} >> $GITHUB_ENV;
+                  echo $customerID
                   export serverVersionrTest=$(curl -k -s https:///$customerID.us.iws.cloud.com/status/up | jq -r '.version')
                   echo $serverVersionrTest
                   export runNumber="${{ github.run_number }}"

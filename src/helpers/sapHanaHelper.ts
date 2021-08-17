@@ -41,7 +41,7 @@ export class SapHanaHelper {
 
     async setTaskType({page, context}: PageContext){
         let text = 'Training';
-        let selector = 'div[data-testid="select-task-type"] > div > div > div > select';
+        let selector = 'div[data-testid="select-1"] > div > div > div > select';
         await helper.setTextOnSelect({page, context, text, selector});
     }
 

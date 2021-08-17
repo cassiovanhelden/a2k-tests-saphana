@@ -75,8 +75,8 @@ export class PageHelper {
     }
 
     async setStartDate(page: Page, dateText:string,) {
-        await page.waitForSelector(`input[@placeholder="Date"]`);
-        await page.type(`input[@placeholder="Date"]`, dateText);
+        await page.waitForSelector(`input[placeholder="Date"]`);
+        await page.type(`input[placeholder="Date"]`, dateText);
 
     }
 

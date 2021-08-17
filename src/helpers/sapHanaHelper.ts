@@ -52,7 +52,7 @@ export class SapHanaHelper {
     }
 
     async setRecordedHours({page, context, inputText}: Input){
-        let selector = 'data-testid=text-input-recorded-hours-hh-mm';
+        let selector = 'data-testid=text-input-1';
         await helper.setTextOnInput({page, context, inputText, selector});
     }
 

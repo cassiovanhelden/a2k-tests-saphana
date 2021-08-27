@@ -62,7 +62,7 @@ export class SapHanaHelper {
 
 
     async selectDate({page, context}: PageContext) {
-        let dateText = '08/31/2021';
+        let dateText = '09/20/2021';
         await helper.setStartDate({page, context, dateText})
     }
 

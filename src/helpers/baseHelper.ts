@@ -43,18 +43,6 @@ export class BaseHelper {
         this.integrationName = integrationName;
     }
 
-    async simpleLoginToWorkspace({page, context}: PageContext) {
-        await step(context)('Login to Workspace', async () => {
-            await workspace.login({
-                page,
-                workspaceUrl,
-                workspaceUsername,
-                workspacePassword,
-                workspaceIdentityProvider,
-            });
-        });
-    }
-
     async commonIntegrationProcesses({ page, context, synchronizationType }: Login) {
         await step(context)('Get Citrix Cloud token', async () => {
             bearerToken = await citrixCloud.getCCBearerToken({
@@ -116,24 +104,6 @@ export class BaseHelper {
     }
 
 
-    async fillLookUp({ page, context, text, lookupSelector}: LookUp) {
-        await step(context)('Filling Lookup Field', async () => {
-            await ph.fillLookup(page, text, lookupSelector)
-        });
-    }
-
-    async selectRecordOnTable({page, context, selector}: Table) {
-        await step(context)('Accessing table record', async () => {
-            await ph.clickOnSelector(page, selector)
-        });
-    }
-
-    async selectOption({ page, context, text, selector}: Select) {
-        await step(context)('Picking a start date', async () => {
-            await ph.selectOption(page, text, selector)
-        });
-    }
-
     async setTextOnSelect({page, context, text, selector}: Select) {
         await step(context)('Setting select text', async () => {
             await ph.setSelectText(page, selector, text)
@@ -143,13 +113,6 @@ export class BaseHelper {
     async setTextOnInput({page, context, inputText, selector}: InputSelect) {
         await step(context)('Setting input text', async () => {
             await ph.setInputText(page, selector, inputText)
-        });
-    }
-
-    async setDateTimeValues({page, context, datetime, selector}: DateTime) {
-        await step(context)('Setting date & time values', async () => {
-            let date = datetime.slice(0,10);
-            await ph.setDateTime(page, selector, date)
         });
     }
 
@@ -169,12 +132,6 @@ export class BaseHelper {
     async clickOnPageActionButton({page, context}: PageContext) {
         await step(context)('Click on action button', async () => {
             await ph.clickOnPageActionButton(page)
-        });
-    }
-
-    async clickOnButton({page, context, text}: PageButton) {
-        await step(context)('Click on Button', async () => {
-            await ph.clickOnButton(page, text)
         });
     }
 

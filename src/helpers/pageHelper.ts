@@ -10,17 +10,6 @@ export class PageHelper {
         await page.click(selector);
     }
 
-    async fillLookup(page: Page, text: string,  lookupSelector: string) {
-        await page.waitForSelector(lookupSelector);
-        await page.type(lookupSelector, text);
-        const environmentUrl = config.microappsAdminUrl.replace('/admin', '');
-        await page.waitForResponse(
-            (response: { url: () => string; status: () => number }) =>
-                response.url().includes(`${environmentUrl}/app/api/app`) && response.status() === 200
-        );
-        await page.press(lookupSelector, 'Enter');
-    }
-
     async setSelectText(page: Page, selector: string,  text: string) {
         await page.waitForSelector(selector);
         await page.type(selector, text);

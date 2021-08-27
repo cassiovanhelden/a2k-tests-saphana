@@ -41,7 +41,7 @@ export class SapHanaHelper {
 
     async setTaskType({page, context}: PageContext){
         let text = 'Training';
-        let selector = 'div[data-testid="select-1"] > div > div > div > select';
+        let selector = 'div[data-testid="select-task-type"] > div > div > div > select';
         await helper.setTextOnSelect({page, context, text, selector});
     }
 
@@ -52,7 +52,7 @@ export class SapHanaHelper {
     }
 
     async setRecordedHours({page, context, inputText}: Input){
-        let selector = 'data-testid=text-input-1';
+        let selector = 'data-testid=text-input-recorded-hours-hh-mm';
         await helper.setTextOnInput({page, context, inputText, selector});
     }
 
@@ -62,7 +62,7 @@ export class SapHanaHelper {
 
 
     async selectDate({page, context}: PageContext) {
-        let dateText = '09/20/2021';
+        let dateText = '09/25/2021';
         await helper.setStartDate({page, context, dateText})
     }
 
